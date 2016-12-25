@@ -9,7 +9,8 @@ void* syscall3(
 typedef unsigned long int size_t;
 typedef long int ssize_t;
 
-static
+#define stdout 1
+
 ssize_t write(int fd, void const* data, size_t nbytes)
 {
     return (ssize_t) syscall3(
@@ -19,9 +20,21 @@ ssize_t write(int fd, void const* data, size_t nbytes)
         (void*) nbytes);
 }
 
+size_t strlen(char const* str)
+{
+    char const* p;
+    for (p = str; *p; ++p);
+    return p - str;
+}
+
+size_t puts(char const* str)
+{
+    return write(stdout, str, strlen(str));
+}
+
 int main(int argc, char* argv[])
 {
-    write(1, "hello\n", 6);
+    puts("hello world\n");
 
     return 0;
 }
