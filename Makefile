@@ -10,7 +10,7 @@ compile:
     -Wa,--noexecstack \
     -fno-builtin \
     -fno-stack-protector \
-	ls.c ls.S -o ls.exe
+	ls.c ls.S syscalls.S -o ls.exe
 
 stripcomment:
 	strip -R .comment ls.exe
