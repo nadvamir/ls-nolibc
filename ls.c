@@ -1,3 +1,5 @@
+#include "syscalls.h"
+
 void* syscall3(
         void* number,
         void* arg1,
@@ -11,10 +13,10 @@ static
 ssize_t write(int fd, void const* data, size_t nbytes)
 {
     return (ssize_t) syscall3(
-        (void*)1, /* SYS_write */
-        (void*)(ssize_t)fd,
-        (void*)data,
-        (void*)nbytes);
+        (void*) SYS_write,
+        (void*)(ssize_t) fd,
+        (void*) data,
+        (void*) nbytes);
 }
 
 int main(int argc, char* argv[])

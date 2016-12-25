@@ -1,3 +1,5 @@
+#include "syscalls.h"
+
 .intel_syntax noprefix
 .text
     .globl _start
@@ -16,7 +18,7 @@
         call main
 
         mov rdi,rax /* syscall param 1 = rax (ret value of main) */
-        mov rax,60 /* SYS_exit */
+        mov rax,SYS_exit
         syscall
 
         ret /* should never be executed */
